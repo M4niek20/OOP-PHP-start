@@ -1,0 +1,4 @@
+class SiteInEdition extends SiteDb {
+    
+
+}
