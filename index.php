@@ -9,7 +9,8 @@
 	<head>
 		<meta charset="UTF-8">
 		<?= $s->showTitle().$s->showKeywords();?>
-	</head>
+		halo to ja xD
+		</head>
 	<body>
 		<?php
 		$a=$s->showMenu();
