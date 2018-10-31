@@ -1,11 +1,11 @@
 <?php
 class SiteDb
 {
-	private $polaczenie;
-	private $menu=array();
-	private $id="home";
-	private $content;
-	private $info = array();
+	protected $polaczenie;
+	protected $menu=array();
+	public $id="home";
+	protected $content;
+	protected $info = array();
 
 	public function __construct($p)
 	{
@@ -42,10 +42,36 @@ class SiteDb
 	public function showArticle()
 	{	
 		if(!empty($_GET['id'])) $this->id=$_GET['id'];
+		
 		$q = "select article from content where menu='".$this->id."'";
 		$w = $this->polaczenie->query($q);
 		$this->content = $w->fetch_array();
-		return "<hr>".$this->content['article'];
+		return $this->content['article'];
 	}
 }
+
+class SiteInEdition extends SiteDb{
+
+	public function showArticle()
+	{	
+		if(!empty($_GET['id'])) $this->id=$_GET['id'];
+		if(!empty($_GET['edit'])) $this->id=$_GET['edit'];
+		$q = "select article from content where menu='".$this->id."'";
+		$w = $this->polaczenie->query($q);
+		$this->content = $w->fetch_array();
+		return $this->content['article'];
+	}
+
+	public function edytuj(){
+		$zawartosc = $_POST['edit'];
+		$q = "update `content` set `article`='$zawartosc' where `menu`='$this->id'";
+		$this->polaczenie->query($q);
+	}
+	//przedefiniuj funkcję showArticle() na taką jak w klasie nadrzędnej 
+	// ale wzbogaconą o przycisk/link do trybu edycji po naciśnięciu którego 
+	//artykuł będzie ładował sie do textarea
+	
+	
+}
+
 ?>
