@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 22 Paź 2018, 11:26
--- Wersja serwera: 10.1.30-MariaDB
--- Wersja PHP: 7.2.2
+-- Czas generowania: 01 Lis 2018, 21:58
+-- Wersja serwera: 10.1.26-MariaDB
+-- Wersja PHP: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `content` (
   `menu` varchar(10) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
-  `article` varchar(20) CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
+  `article` text CHARACTER SET utf8 COLLATE utf8_polish_ci NOT NULL,
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf16 COLLATE=utf16_polish_ci;
 
@@ -39,8 +39,46 @@ CREATE TABLE `content` (
 --
 
 INSERT INTO `content` (`menu`, `article`, `date`) VALUES
-('home', 'witaj na stronie', '2018-10-01'),
-('kontakt', 'ul loretanska', '2018-10-15');
+('home', 'Siemanderko bykuuu', '2018-10-01'),
+('kontakt', 'ul loretaÅ„ska\r\n', '2018-10-15'),
+('Gabi', 'To jest super laska i jÄ… bardzo kocham					', '2018-11-01');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `info`
+--
+
+CREATE TABLE `info` (
+  `title` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `keywords` text COLLATE utf8_polish_ci NOT NULL,
+  `logo` text COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `info`
+--
+
+INSERT INTO `info` (`title`, `keywords`, `logo`) VALUES
+('Maniek', 'maniek, php', 'marian.png');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `users`
+--
+
+CREATE TABLE `users` (
+  `user` varchar(50) COLLATE utf8_polish_ci NOT NULL,
+  `password` varchar(50) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `users`
+--
+
+INSERT INTO `users` (`user`, `password`) VALUES
+('admin', 'admin');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

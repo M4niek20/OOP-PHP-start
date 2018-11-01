@@ -1,0 +1,123 @@
+body{
+    margin:0 auto;
+    background-color:lightgrey;
+    color:white;
+}
+
+header{
+    background-color:#B803FF;
+    height:200px;
+}
+
+#logo{
+    width:20%;
+    float:left;
+    height:200px;
+}
+
+#baner{
+    width:60%;
+    float:left;
+    text-align:center;
+    font-size:50px;
+    font-weight:bold;
+    padding-top:20px;
+}
+
+#logo img{
+    height:100%;
+}
+
+#log{
+    float:left;
+    width:20%;
+    text-align:right;
+    padding-right:10px;
+    box-sizing:border-box;
+}
+#menu{
+    background-color:pink;
+    text-align:center;
+    list-style:none;
+    padding-top:20px;
+    padding-bottom:20px;
+    font-size:25px;
+}
+
+#formAddArticle{
+    display:none;
+    text-align:center;
+    width:90%;
+    margin:0 auto;
+    background-color:#B803FF;
+    padding-top:20px;
+    padding-bottom:40px;
+    border-radius:30px;
+    
+}
+
+#menu form input[type="text"]{
+    width:90%;
+}
+
+#menu form input[type="submit"]{
+    width:90%;
+    height:50px;
+    background-color:pink;
+}
+
+#menu form textarea{
+    width:90%;
+    height:200px;
+}
+
+a{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+#add{
+    color:lightgoldenrodyellow;
+}
+
+article{
+    margin:0 auto;
+    width:90%;
+    background:white;
+    color:black;
+    border-radius:30px;
+    margin-top:50px;
+}
+
+#title{
+    width:100%;
+    height:40px;
+    background:darkgrey;
+    text-align:right;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    padding:10px;
+    padding-left:20px;
+    padding-right:20px;
+    box-sizing:border-box;
+}
+
+#title span{
+    margin-top:-8px;
+    float:left;
+    font-size:30px;
+    font-weight:bold;
+    color:white;
+}
+
+#content{
+    width:100%;
+    padding:10px;
+    padding-left:20px;
+    padding-right:20px;
+    text-align:center;
+    box-sizing:border-box;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}

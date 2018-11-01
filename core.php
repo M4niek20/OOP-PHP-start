@@ -9,6 +9,10 @@ class SiteDb
 
 	public function __construct($p)
 	{
+		if(!empty($_GET['id'])) $this->id=$_GET['id'];
+		if(!empty($_GET['edit'])) $this->id=$_GET['edit'];
+		if(!empty($_GET['delete'])) $this->id=$_GET['delete'];
+
 		$this->polaczenie=$p;    
 		if ($this->polaczenie->connect_error) die("Błąd połączenia:".$polaczenie->connect_error);
 		
@@ -41,37 +45,52 @@ class SiteDb
 	
 	public function showArticle()
 	{	
-		if(!empty($_GET['id'])) $this->id=$_GET['id'];
-		
 		$q = "select article from content where menu='".$this->id."'";
 		$w = $this->polaczenie->query($q);
 		$this->content = $w->fetch_array();
 		return $this->content['article'];
+	}
+
+	public function showLogin()
+	{
+		if(!isset($_SESSION['user'])) require_once('login.html');
+		else {
+		echo "twój login: " . $_SESSION['user'] . "<a href='index.php?id=logout'>Wyloguj</a>";
+		}
 	}
 }
 
 class SiteInEdition extends SiteDb{
 
-	public function showArticle()
-	{	
-		if(!empty($_GET['id'])) $this->id=$_GET['id'];
-		if(!empty($_GET['edit'])) $this->id=$_GET['edit'];
-		$q = "select article from content where menu='".$this->id."'";
-		$w = $this->polaczenie->query($q);
-		$this->content = $w->fetch_array();
-		return $this->content['article'];
-	}
-
-	public function edytuj(){
+	public function editArticle()
+	{
 		$zawartosc = $_POST['edit'];
-		$q = "update `content` set `article`='$zawartosc' where `menu`='$this->id'";
+		$q = "update `content` set `article`='$zawartosc' where `menu`='".$this->id."'";
 		$this->polaczenie->query($q);
 	}
-	//przedefiniuj funkcję showArticle() na taką jak w klasie nadrzędnej 
-	// ale wzbogaconą o przycisk/link do trybu edycji po naciśnięciu którego 
-	//artykuł będzie ładował sie do textarea
-	
-	
-}
 
+	public function logout(){
+		session_destroy();
+		header("Location: index.php");
+	}
+
+	public function addArticle(){
+		
+		$menu = $_POST['menu'];
+		if($menu != ""){
+		$article = $_POST['article'];
+		$date = date ("Y-m-d");
+		echo $date;
+		$q = "insert into `content`(`menu`, `article`, `date`) VALUES ('$menu','$article','$date')";
+		$this->polaczenie->query($q);
+		header("Location: index.php");
+		}
+	}
+
+	public function deleteArticle(){
+		$q = "delete from `content` where `menu`='$this->id'";
+		$this->polaczenie->query($q);
+		header("Location: index.php");
+	}
+}	
 ?>
